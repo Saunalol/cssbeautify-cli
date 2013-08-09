@@ -1,0 +1,36 @@
+{
+  "name": "cssbeautify-cli",
+  "description": "CLI for cssbeautify",
+  "version": "0.1.0",
+  "author": {
+    "name": "Igor Shevchenko",
+    "email": "cyberskunk@yandex.ru"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Saunalol/cssbeautify-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Saunalol/cssbeautify-cli/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/Saunalol/cssbeautify-cli/blob/master/LICENCE"
+    }
+  ],
+  "bin": "bin/cssbeautify-cli",
+  "engines": {
+    "node": "*"
+  },
+  "keywords": [
+    "cssbeautify",
+    "css",
+    "formatter",
+    "cli"
+  ],
+  "dependencies": {
+    "cssbeautify": "~0.3.0",
+    "optimist": "~0.6.0"
+  }
+}
