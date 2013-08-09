@@ -1,6 +1,6 @@
 # CSS Beautify CLI #
 
-CLI for [cssbeautify.com](http://cssbeautify.com)
+CLI for [cssbeautify](https://github.com/senchalabs/cssbeautify)
 
 ## Usage ##
 
