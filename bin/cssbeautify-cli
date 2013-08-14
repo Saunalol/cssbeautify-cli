@@ -26,9 +26,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 var fs = require('fs'),
     cssbeautify = require('cssbeautify'),
-    cssbeautifyCli = require('../lib/cssbeautify-cli'),
+    cssbeautifyCli = require('../lib/cssbeautify-cli')()
+        .parse()
+        .process(),
     filename = cssbeautifyCli.filename,
     options = cssbeautifyCli.options;
+
+cssbeautifyCli.callback();
 
 try {
     console.log(cssbeautify(fs.readFileSync(filename, 'utf-8'), options));
