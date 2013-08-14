@@ -1,7 +1,7 @@
 {
   "name": "cssbeautify-cli",
   "description": "CLI for cssbeautify",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Igor Shevchenko",
     "email": "cyberskunk@yandex.ru"
@@ -20,6 +20,9 @@
     }
   ],
   "bin": "bin/cssbeautify-cli",
+  "scripts": {
+    "test": "nodeunit test/"
+  },
   "engines": {
     "node": "*"
   },

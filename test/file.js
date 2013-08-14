@@ -22,10 +22,8 @@ exports.singleParam_f = function (test) {
 
 exports.singleParam_file = function (test) {
     process.argv = ['node', 'lol', '--file=' + filename];
-    var x = cssbeautifyCli.parse();
 
-    options = x.process().options;
-    console.log(options);
+    options = cssbeautifyCli.parse().process().options;
 
     (Object.keys(defaults)).forEach(function (option) {
         test.strictEqual(options[option], defaults[option], 'bad option ' + option);
