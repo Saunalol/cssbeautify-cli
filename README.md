@@ -17,6 +17,12 @@ Options:
 
 ```
 
+__Note__
+
+It's mpossible to pass empty `indent` option in the following form: `-i ''`
+Following solutions work just fine: `-i0`, `--indent ''`, `--indent=''`, `--indent=0`
+
+
 ## Versions
 **0.2.0**
  * file is now passed in -f (--file) option

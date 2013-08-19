@@ -1,10 +1,10 @@
-var cssbeautifyCli = require('../lib/cssbeautify-cli')(),
+var CssbeautifyCli = require('../lib/cssbeautify-cli'),
     options;
 
 exports.help = function (test) {
     process.argv = ['node', 'lol', '-h'];
 
-    cssbeautifyCli = require('../lib/cssbeautify-cli')()
+    cssbeautifyCli = CssbeautifyCli()
         .parse()
         .process();
     options = cssbeautifyCli.options;
@@ -22,7 +22,7 @@ exports.help = function (test) {
 exports.version = function (test) {
     process.argv = ['node', 'lol', '-v'];
 
-    cssbeautifyCli = require('../lib/cssbeautify-cli')()
+    cssbeautifyCli = CssbeautifyCli()
         .parse()
         .process();
 

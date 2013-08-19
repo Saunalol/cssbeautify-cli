@@ -15,7 +15,7 @@ exports.singleParam_f = function (test) {
         test.strictEqual(options[option], defaults[option], 'bad option ' + option);
     });
     test.strictEqual(cssbeautifyCli.filename, filename, 'bad filename');
-    test.strictEqual(cssbeautifyCli.exit, null, 'bad exit object');
+    test.strictEqual(cssbeautifyCli.exit.code, 0, 'bad exit object');
 
     test.done();
 };
@@ -29,7 +29,7 @@ exports.singleParam_file = function (test) {
         test.strictEqual(options[option], defaults[option], 'bad option ' + option);
     });
     test.strictEqual(cssbeautifyCli.filename, filename, 'bad filename');
-    test.strictEqual(cssbeautifyCli.exit, null, 'bad exit object');
+    test.strictEqual(cssbeautifyCli.exit.code, 0, 'bad exit object');
 
     test.done();
 };
