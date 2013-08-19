@@ -1,20 +1,53 @@
 var CssbeautifyCli = require('../lib/cssbeautify-cli'),
-    defaults = {
-        indent: '    ', // 4 spaces
-        openbrace: 'end-of-line',
-        autosemicolon: false
-    },
+    cssbeautifyCli,
     filename = 'test.css';
 
-exports.openbrace = function (test) {
+exports.o = function (test) {
     var openbrace = ['end-of-line', 'separate-line'];
 
     openbrace.forEach(function (openbrace) {
         process.argv = ['node', 'lol', '-f', filename, '-o', openbrace];
 
-        options = CssbeautifyCli().parse().process().options;
+        cssbeautifyCli = CssbeautifyCli()
+            .parse()
+            .process();
 
-        test.strictEqual(options.openbrace, openbrace);
+        test.strictEqual(cssbeautifyCli.options.openbrace, openbrace);
+        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
+    });
+
+    test.done();
+};
+
+exports.openbrace = function (test) {
+    var openbrace = ['end-of-line', 'separate-line'];
+
+    openbrace.forEach(function (openbrace) {
+        process.argv = ['node', 'lol', '-f', filename, '--openbrace', openbrace];
+
+        cssbeautifyCli = CssbeautifyCli()
+            .parse()
+            .process();
+
+        test.strictEqual(cssbeautifyCli.options.openbrace, openbrace);
+        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
+    });
+
+    test.done();
+};
+
+exports.openbrace = function (test) {
+    var openbrace = ['end-of-line', 'separate-line'];
+
+    openbrace.forEach(function (openbrace) {
+        process.argv = ['node', 'lol', '-f', filename, '--openbrace=' + openbrace];
+
+        cssbeautifyCli = CssbeautifyCli()
+            .parse()
+            .process();
+
+        test.strictEqual(cssbeautifyCli.options.openbrace, openbrace);
+        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
     });
 
     test.done();
@@ -25,7 +58,7 @@ exports.openbrace_wrong = function (test) {
 
     process.argv = ['node', 'lol', '-f', filename, '-o', openbrace];
 
-    var cssbeautifyCli = CssbeautifyCli()
+    cssbeautifyCli = CssbeautifyCli()
         .parse()
         .process();
 

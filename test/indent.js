@@ -25,7 +25,7 @@ exports.i_spaces = function (test) {
         cssbeautifyCli = CssbeautifyCli().parse().process();
 
         test.strictEqual(cssbeautifyCli.options.indent, indent);
-        test.strictEqual(cssbeautifyCli.exit.code, 0);
+        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
     });
 
     test.done();
@@ -38,7 +38,7 @@ exports.indent_spaces = function (test) {
         cssbeautifyCli = CssbeautifyCli().parse().process();
 
         test.strictEqual(cssbeautifyCli.options.indent, indent);
-        test.strictEqual(cssbeautifyCli.exit.code, 0);
+        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
     });
 
     test.done();
@@ -50,7 +50,7 @@ exports['indent=_spaces'] = function (test) {
 
         cssbeautifyCli = CssbeautifyCli().parse().process();
 
-        test.strictEqual(cssbeautifyCli.exit.code, 0);
+        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
         test.strictEqual(cssbeautifyCli.options.indent, indent);
     });
 
@@ -64,7 +64,7 @@ exports.i_numbers = function (test) {
         cssbeautifyCli = CssbeautifyCli().parse().process();
 
         test.strictEqual(cssbeautifyCli.options.indent, indent.expected);
-        test.strictEqual(cssbeautifyCli.exit.code, 0);
+        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
     });
 
     test.done();
@@ -77,7 +77,7 @@ exports.i_numbers2 = function (test) {
         cssbeautifyCli = CssbeautifyCli().parse().process();
 
         test.strictEqual(cssbeautifyCli.options.indent, indent.expected);
-        test.strictEqual(cssbeautifyCli.exit.code, 0);
+        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
     });
 
     test.done();
@@ -90,7 +90,7 @@ exports.indent_numbers = function (test) {
         cssbeautifyCli = CssbeautifyCli().parse().process();
 
         test.strictEqual(cssbeautifyCli.options.indent, indent.expected);
-        test.strictEqual(cssbeautifyCli.exit.code, 0);
+        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
     });
 
     test.done();
@@ -105,7 +105,7 @@ exports['indent=_numbers'] = function (test) {
             .process();
 
         test.strictEqual(cssbeautifyCli.options.indent, indent.expected);
-        test.strictEqual(cssbeautifyCli.exit.code, 0);
+        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
     });
 
     test.done();

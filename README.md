@@ -17,13 +17,19 @@ Options:
 
 ```
 
-__Note__
+__Notes__
+It seems to me that `optimist` introduces strange behaviour in some cases, e.g.
+it's mpossible to pass empty `indent` option in the following form: `-i ''`,
+but following solutions work just fine: `-i0`, `--indent ''`, `--indent=''`, `--indent=0`.
 
-It's mpossible to pass empty `indent` option in the following form: `-i ''`
-Following solutions work just fine: `-i0`, `--indent ''`, `--indent=''`, `--indent=0`
+Also the behaviour of boolean `-a` option is quite strange sometimes, check `test/autosemicolon.js` for
+details.
 
 
 ## Versions
+**0.2.1**
+ * some minor fixes
+
 **0.2.0**
  * file is now passed in -f (--file) option
 
