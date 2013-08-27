@@ -2,6 +2,10 @@
 
 CLI for [cssbeautify](https://github.com/senchalabs/cssbeautify)
 
+## Installation
+
+    `npm install -g cssbeautify-cli`
+
 ## Usage ##
 
     `cssbeautify-bin [options] -f filename`
@@ -17,7 +21,14 @@ Options:
 
 ```
 
+examples:
+```
+cssbeautify-cli -i2 -o "separate-line" -f ololo.css
+cssbeautify-cli --indent="   " -f nyan.css
+```
+
 __Notes__
+
 It seems to me that `optimist` introduces strange behaviour in some cases, e.g.
 it's mpossible to pass empty `indent` option in the following form: `-i ''`,
 but following solutions work just fine: `-i0`, `--indent ''`, `--indent=''`, `--indent=0`.
