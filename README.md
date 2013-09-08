@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Saunalol/cssbeautify-cli.png?branch=master)](https://travis-ci.org/Saunalol/cssbeautify-cli)
+[![Dependency Status](https://gemnasium.com/Saunalol/cssbeautify-cli.png)](https://gemnasium.com/Saunalol/cssbeautify-cli)[![Build Status](https://travis-ci.org/Saunalol/cssbeautify-cli.png?branch=master)](https://travis-ci.org/Saunalol/cssbeautify-cli)
 # CSS Beautify CLI #
 
 CLI for [cssbeautify](https://github.com/senchalabs/cssbeautify)
