@@ -49,7 +49,6 @@ exports['indent=_spaces'] = function (test) {
         process.argv = ['node', 'lol', '-f', filename, '--indent='+indent];
 
         cssbeautifyCli = CssbeautifyCli().parse().process();
-
         test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
         test.strictEqual(cssbeautifyCli.options.indent, indent);
     });
@@ -120,6 +119,7 @@ exports.i_wrong = function (test) {
 
     test.strictEqual(cssbeautifyCli.options, null);
     test.strictEqual(cssbeautifyCli.exit.code, 1);
+    test.strictEqual(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.indent);
 
     test.done();
 };
@@ -133,6 +133,7 @@ exports.indent_wrong = function (test) {
 
     test.strictEqual(cssbeautifyCli.options, null);
     test.strictEqual(cssbeautifyCli.exit.code, 1);
+    test.strictEqual(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.indent);
 
     test.done();
 };
@@ -146,6 +147,7 @@ exports['indent=_wrong'] = function (test) {
 
     test.strictEqual(cssbeautifyCli.options, null);
     test.strictEqual(cssbeautifyCli.exit.code, 1);
+    test.strictEqual(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.indent);
 
     test.done();
 };

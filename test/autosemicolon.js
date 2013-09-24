@@ -52,7 +52,7 @@ exports.autosemicolon_false = function (test) {
     test.done();
 };
 
-exports.autosemicolon_wrong = function (test) {
+exports.a_wrong = function (test) {
     process.argv = ['node', 'lol', '-f', filename, '-a', 'xxx'];
 
     ([
@@ -67,6 +67,49 @@ exports.autosemicolon_wrong = function (test) {
 
         test.strictEqual(cssbeautifyCli.options, null);
         test.strictEqual(cssbeautifyCli.exit.code, 1);
+        test.strictEqual(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.autosemicolon);
+    });
+
+    test.done();
+};
+
+exports.autosemicolon_wrong = function (test) {
+    process.argv = ['node', 'lol', '-f', filename, '--autosemicolon', 'xxx'];
+
+    ([
+        ['node', 'lol', '-f', filename, '--autosemicolon=true'],
+        ['node', 'lol', '-f', filename, '--autosemicolon=false']
+    ]).forEach(function (argv) {
+        process.argv = argv;
+
+        cssbeautifyCli = CssbeautifyCli()
+            .parse()
+            .process();
+
+        test.strictEqual(cssbeautifyCli.options, null);
+        test.strictEqual(cssbeautifyCli.exit.code, 1);
+        test.strictEqual(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.autosemicolon);
+    });
+
+    test.done();
+};
+
+exports['autosemicolon=_wrong'] = function (test) {
+    process.argv = ['node', 'lol', '-f', filename, '--autosemicolon=xxx'];
+
+    ([
+        ['node', 'lol', '-f', filename, '--autosemicolon=true'],
+        ['node', 'lol', '-f', filename, '--autosemicolon=false']
+    ]).forEach(function (argv) {
+        process.argv = argv;
+
+        cssbeautifyCli = CssbeautifyCli()
+            .parse()
+            .process();
+
+        test.strictEqual(cssbeautifyCli.options, null);
+        test.strictEqual(cssbeautifyCli.exit.code, 1);
+        test.strictEqual(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.autosemicolon);
     });
 
     test.done();
