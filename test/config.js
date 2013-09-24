@@ -65,23 +65,23 @@ exports.correctlyRead = function (test) {
     test.done();
 };
 
-exports.commandLineOverrides = function (test) {
-    var config = {
+exports.overridesCommandLine = function (test) {
+    var localConfig = {
         indent: 4,
         autosemicolon: 'false',
         openbrace: 'separate-line'
     };
 
-    fs.writeFileSync(configFileName, JSON.stringify(config));
+    fs.writeFileSync(configFileName, JSON.stringify(localConfig));
 
     process.argv = ['node', 'lol',
         '-f', filename,
         '-c', configFileName,
-        '-i', config.indent,
-        '-a', config.autosemicolon,
-        '-o', config.openbrace
+        '-i', localConfig.indent,
+        '-a', localConfig.autosemicolon,
+        '-o', localConfig.openbrace
     ];
-console.log('local config: ', config);
+
     cssbeautifyCli = CssbeautifyCli()
         .parse()
         .process();

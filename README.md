@@ -14,6 +14,7 @@ CLI for [cssbeautify](https://github.com/senchalabs/cssbeautify)
 Options:
 ```
   -a, --autosemicolon  insert a semicolon after the last ruleset                                              [default: false]
+  -c, --config         json config file to use
   -f, --file           file to beautify
   -h, --help           show this help message
   -i, --indent         string used for the indentation of the declaration (spaces, tabs or number of spaces)  [default: "    "]
@@ -22,7 +23,8 @@ Options:
 
 ```
 
-examples:
+__Note:__ Options from config override command line options.
+__Examples__
 ```
 cssbeautify-cli -i2 -o "separate-line" -f ololo.css
 cssbeautify-cli --indent="   " -f nyan.css
@@ -39,6 +41,9 @@ details.
 
 
 ## Versions
+**0.3.0**
+ * `-c` (`--config`) option added
+
 **0.2.1**
  * some minor fixes
 
