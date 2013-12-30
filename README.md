@@ -23,7 +23,6 @@ Options:
 
 ```
 
-__Note:__ Options from config override command line options.
 __Examples__
 ```
 cssbeautify-cli -i2 -o "separate-line" -f ololo.css
@@ -31,12 +30,11 @@ cssbeautify-cli --indent="   " -f nyan.css
 ```
 
 __Notes__
-
-It seems to me that `optimist` introduces strange behaviour in some cases, e.g.
+- Options from config override command line options.
+- It seems to me that `optimist` introduces strange behaviour in some cases, e.g.
 it's mpossible to pass empty `indent` option in the following form: `-i ''`,
 but following solutions work just fine: `-i0`, `--indent ''`, `--indent=''`, `--indent=0`.
-
-Also the behaviour of boolean `-a` option is quite strange sometimes, check `test/autosemicolon.js` for
+- The behaviour of boolean `-a` option is quite strange sometimes, check `test/autosemicolon.js` for
 details.
 
 
