@@ -1,4 +1,5 @@
 var CssbeautifyCli = require('../lib/cssbeautify-cli'),
+    fakeCommand = './bin/cssbeautify',
     filename = 'test.css',
     cssbeautifyCli,
     config = {
@@ -12,7 +13,7 @@ var CssbeautifyCli = require('../lib/cssbeautify-cli'),
 exports.missingValue = function (test) {
     ['-c', '-c=', '--config', '--config='].forEach(function (param) {
 
-        process.argv = ['node', 'lol', '-f', filename, param];
+        process.argv = ['node', fakeCommand, '-f', filename, param];
 
         cssbeautifyCli = CssbeautifyCli()
             .parse()
@@ -30,7 +31,7 @@ exports.missingFile = function (test) {
     fs.writeFileSync(configFileName, JSON.stringify(config));
 
     ['-c', '-c=', '--config', '--config='].forEach(function (param) {
-        process.argv = ['node', 'lol', '-f', filename, param, 'someNonexistingFile'];
+        process.argv = ['node', fakeCommand, '-f', filename, param, 'someNonexistingFile'];
 
         cssbeautifyCli = CssbeautifyCli()
             .parse()
@@ -48,7 +49,7 @@ exports.missingFile = function (test) {
 exports.correctlyRead = function (test) {
     fs.writeFileSync(configFileName, JSON.stringify(config));
 
-    process.argv = ['node', 'lol', '-f', filename, '-c', configFileName];
+    process.argv = ['node', fakeCommand, '-f', filename, '-c', configFileName];
 
     cssbeautifyCli = CssbeautifyCli()
         .parse()
@@ -74,7 +75,7 @@ exports.overridesCommandLine = function (test) {
 
     fs.writeFileSync(configFileName, JSON.stringify(localConfig));
 
-    process.argv = ['node', 'lol',
+    process.argv = ['node', fakeCommand,
         '-f', filename,
         '-c', configFileName,
         '-i', localConfig.indent,

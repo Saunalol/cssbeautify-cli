@@ -4,10 +4,11 @@ var cssbeautifyCli = require('../lib/cssbeautify-cli')(),
         openbrace: 'end-of-line',
         autosemicolon: false
     },
+    fakeCommand = './bin/cssbeautify',
     filename = 'test.css';
 
 exports.singleParam_f = function (test) {
-    process.argv = ['node', 'lol', '-f', filename];
+    process.argv = ['node', fakeCommand, '-f', filename];
 
     options = cssbeautifyCli.parse().process().options;
 
@@ -21,7 +22,7 @@ exports.singleParam_f = function (test) {
 };
 
 exports.singleParam_file = function (test) {
-    process.argv = ['node', 'lol', '--file=' + filename];
+    process.argv = ['node', fakeCommand, '--file=' + filename];
 
     options = cssbeautifyCli.parse().process().options;
 

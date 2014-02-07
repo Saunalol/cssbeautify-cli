@@ -1,5 +1,6 @@
 var CssbeautifyCli = require('../lib/cssbeautify-cli'),
     cssbeautifyCli,
+    fakeCommand = './bin/cssbeautify',
     filename = 'test.css',
     indentNumbers = [
         {
@@ -20,7 +21,7 @@ var CssbeautifyCli = require('../lib/cssbeautify-cli'),
 
 exports.i_spaces = function (test) {
     indentSpaces.forEach(function (indent) {
-        process.argv = ['node', 'lol', '-f', filename, '-i', indent];
+        process.argv = ['node', fakeCommand, '-f', filename, '-i', indent];
 
         cssbeautifyCli = CssbeautifyCli().parse().process();
 
@@ -33,7 +34,7 @@ exports.i_spaces = function (test) {
 
 exports.indent_spaces = function (test) {
     indentSpaces.concat('').forEach(function (indent) {
-        process.argv = ['node', 'lol', '-f', filename, '--indent', indent];
+        process.argv = ['node', fakeCommand, '-f', filename, '--indent', indent];
 
         cssbeautifyCli = CssbeautifyCli().parse().process();
 
@@ -46,7 +47,7 @@ exports.indent_spaces = function (test) {
 
 exports['indent=_spaces'] = function (test) {
     indentSpaces.concat('').forEach(function (indent) {
-        process.argv = ['node', 'lol', '-f', filename, '--indent='+indent];
+        process.argv = ['node', fakeCommand, '-f', filename, '--indent='+indent];
 
         cssbeautifyCli = CssbeautifyCli().parse().process();
         test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
@@ -58,7 +59,7 @@ exports['indent=_spaces'] = function (test) {
 
 exports.i_numbers = function (test) {
     indentNumbers.forEach(function (indent) {
-        process.argv = ['node', 'lol', '-f', filename, '-i', indent.value];
+        process.argv = ['node', fakeCommand, '-f', filename, '-i', indent.value];
 
         cssbeautifyCli = CssbeautifyCli().parse().process();
 
@@ -71,7 +72,7 @@ exports.i_numbers = function (test) {
 
 exports.i_numbers2 = function (test) {
     indentNumbers.forEach(function (indent) {
-        process.argv = ['node', 'lol', '-f', filename, '-i'+indent.value];
+        process.argv = ['node', fakeCommand, '-f', filename, '-i'+indent.value];
 
         cssbeautifyCli = CssbeautifyCli().parse().process();
 
@@ -84,7 +85,7 @@ exports.i_numbers2 = function (test) {
 
 exports.indent_numbers = function (test) {
     indentNumbers.forEach(function (indent) {
-        process.argv = ['node', 'lol', '-f', filename, '--indent', indent.value];
+        process.argv = ['node', fakeCommand, '-f', filename, '--indent', indent.value];
 
         cssbeautifyCli = CssbeautifyCli().parse().process();
 
@@ -97,7 +98,7 @@ exports.indent_numbers = function (test) {
 
 exports['indent=_numbers'] = function (test) {
     indentNumbers.forEach(function (indent) {
-        process.argv = ['node', 'lol', '-f', filename, '--indent=' + indent.value];
+        process.argv = ['node', fakeCommand, '-f', filename, '--indent=' + indent.value];
 
         cssbeautifyCli = CssbeautifyCli()
             .parse()
@@ -111,7 +112,7 @@ exports['indent=_numbers'] = function (test) {
 };
 
 exports.i_wrong = function (test) {
-    process.argv = ['node', 'lol', '-f', filename, '-i', wrongIndent];
+    process.argv = ['node', fakeCommand, '-f', filename, '-i', wrongIndent];
 
     var cssbeautifyCli = CssbeautifyCli()
         .parse()
@@ -125,7 +126,7 @@ exports.i_wrong = function (test) {
 };
 
 exports.indent_wrong = function (test) {
-    process.argv = ['node', 'lol', '-f', filename, '--indent', wrongIndent];
+    process.argv = ['node', fakeCommand, '-f', filename, '--indent', wrongIndent];
 
     var cssbeautifyCli = CssbeautifyCli()
         .parse()
@@ -139,7 +140,7 @@ exports.indent_wrong = function (test) {
 };
 
 exports['indent=_wrong'] = function (test) {
-    process.argv = ['node', 'lol', '-f', filename, '--indent', wrongIndent];
+    process.argv = ['node', fakeCommand, '-f', filename, '--indent', wrongIndent];
 
     var cssbeautifyCli = CssbeautifyCli()
         .parse()

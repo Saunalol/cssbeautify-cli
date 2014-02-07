@@ -1,12 +1,13 @@
 var CssbeautifyCli = require('../lib/cssbeautify-cli'),
     cssbeautifyCli,
+    fakeCommand = './bin/cssbeautify',
     filename = 'test.css';
 
 exports.o = function (test) {
     var openbrace = ['end-of-line', 'separate-line'];
 
     openbrace.forEach(function (openbrace) {
-        process.argv = ['node', 'lol', '-f', filename, '-o', openbrace];
+        process.argv = ['node', fakeCommand, '-f', filename, '-o', openbrace];
 
         cssbeautifyCli = CssbeautifyCli()
             .parse()
@@ -23,7 +24,7 @@ exports.openbrace = function (test) {
     var openbrace = ['end-of-line', 'separate-line'];
 
     openbrace.forEach(function (openbrace) {
-        process.argv = ['node', 'lol', '-f', filename, '--openbrace', openbrace];
+        process.argv = ['node', fakeCommand, '-f', filename, '--openbrace', openbrace];
 
         cssbeautifyCli = CssbeautifyCli()
             .parse()
@@ -39,7 +40,7 @@ exports.openbrace = function (test) {
 exports.o_wrong = function (test) {
     var openbrace = 'end-of-line-xxx';
 
-    process.argv = ['node', 'lol', '-f', filename, '-o', openbrace];
+    process.argv = ['node', fakeCommand, '-f', filename, '-o', openbrace];
 
     cssbeautifyCli = CssbeautifyCli()
         .parse()
@@ -55,7 +56,7 @@ exports.o_wrong = function (test) {
 exports.openbrace_wrong = function (test) {
     var openbrace = 'end-of-line-xxx';
 
-    process.argv = ['node', 'lol', '-f', filename, '--openbrace', openbrace];
+    process.argv = ['node', fakeCommand, '-f', filename, '--openbrace', openbrace];
 
     cssbeautifyCli = CssbeautifyCli()
         .parse()
@@ -71,7 +72,7 @@ exports.openbrace_wrong = function (test) {
 exports['openbrace=_wrong'] = function (test) {
     var openbrace = 'end-of-line-xxx';
 
-    process.argv = ['node', 'lol', '-f', filename, '--openbrace='+openbrace];
+    process.argv = ['node', fakeCommand, '-f', filename, '--openbrace='+openbrace];
 
     cssbeautifyCli = CssbeautifyCli()
         .parse()
