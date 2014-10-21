@@ -42,7 +42,7 @@ details
 ## Versions
 **0.4.0**
  * `-s` (`--stdin`) option added
-
+ * node 0.8 support dropped
 
 **0.3.0**
  * `-c` (`--config`) option added
