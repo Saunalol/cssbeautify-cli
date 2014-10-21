@@ -19,6 +19,7 @@ Options:
 -h, --help           show this help message
 -i, --indent         string used for the indentation of the declaration (spaces, tabs or number of spaces)  [default: "    "]
 -o, --openbrace      the placement of open curly brace, either end-of-line or separate-line                 [default: "end-of-line"]
+-s, --stdin          use stdin
 -v, --version        Display program version
 ```
 
@@ -35,9 +36,14 @@ it's impossible to pass empty `indent` option in the following form: `-i ''`,
 but these solutions work just fine: `-i0`, `--indent ''`, `--indent=''`, `--indent=0`
 - The behaviour of boolean `-a` option is quite strange sometimes, check `test/autosemicolon.js` for
 details
+- file option is used if both file and stdin options are passed
 
 
 ## Versions
+**0.4.0**
+ * `-s` (`--stdin`) option added
+
+
 **0.3.0**
  * `-c` (`--config`) option added
 
