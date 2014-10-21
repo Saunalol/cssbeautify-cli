@@ -12,7 +12,7 @@ exports.test = function (test) {
 
     test.strictEqual(typeof cssbeautifyCli.filename, 'undefined', 'bad filename');
 
-    test.strictEqual(typeof cssbeautifyCli.exit, 'object', 'bad exit');
+    test.strictEqual(typeof cssbeautifyCli.exit, 'object', 'bad exit object');
     test.strictEqual(cssbeautifyCli.exit.code, 1, 'bad exit code');
     test.strictEqual(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.file);
 
