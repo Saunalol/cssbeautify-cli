@@ -27,15 +27,17 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 var fs = require('fs'),
     cssbeautify = require('cssbeautify'),
     concat = require('concat-stream'),
-    bufferStream = new require('stream').Transform(),
+    stream = require('stream'),
+    bufferStream = new stream.Transform(),
     cssbeautifyCli = require('../lib/cssbeautify-cli')()
         .parse()
         .process(),
     filename = cssbeautifyCli.filename,
     options = cssbeautifyCli.options,
+    outFile = cssbeautifyCli.writefile,
     outputFn = function (data) {
         bufferStream.push(cssbeautify(data.toString(), options));
-        return bufferStream.pipe(process.stdout);
+        return bufferStream.pipe(outFile ? fs.createWriteStream(outFile) : process.stdout);
     };
 
 cssbeautifyCli.callback();
