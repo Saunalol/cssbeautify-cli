@@ -40,6 +40,9 @@ details
 
 
 ## Versions
+**0.5.0**
+ * `-w` (`--writefile`) option added
+
 **0.4.1**
  * `help` output fixed
 
