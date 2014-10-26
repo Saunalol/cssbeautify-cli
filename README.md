@@ -40,6 +40,9 @@ details
 
 
 ## Versions
+**0.4.1**
+ * `help` output fixed
+
 **0.4.0**
  * `-s` (`--stdin`) option added
  * node 0.8 support dropped
