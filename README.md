@@ -21,6 +21,7 @@ Options:
 -o, --openbrace      the placement of open curly brace, either end-of-line or separate-line                 [default: "end-of-line"]
 -s, --stdin          use stdin
 -v, --version        Display program version
+-w, --writefile      write output to file
 ```
 
 __Examples__
