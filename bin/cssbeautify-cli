@@ -27,26 +27,21 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 var fs = require('fs'),
     cssbeautify = require('cssbeautify'),
     concat = require('concat-stream'),
+    bufferStream = new require('stream').Transform(),
     cssbeautifyCli = require('../lib/cssbeautify-cli')()
         .parse()
         .process(),
     filename = cssbeautifyCli.filename,
     options = cssbeautifyCli.options,
     outputFn = function (data) {
-        return console.log(cssbeautify(data, options));
+        bufferStream.push(cssbeautify(data.toString(), options));
+        return bufferStream.pipe(process.stdout);
     };
 
 cssbeautifyCli.callback();
 
 try {
-    if (filename) {
-        outputFn(fs.readFileSync(filename, 'utf-8'));
-    } else {
-        process.stdin.pipe(concat(function (data) {
-            outputFn(data.toString());
-        }));
-    }
-
+    (filename ? fs.createReadStream(filename) : process.stdin).pipe(concat(outputFn));
 
 } catch (e) {
     console.log('Error: ' + e.message);
