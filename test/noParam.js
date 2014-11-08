@@ -12,6 +12,7 @@ exports.test = function (test) {
 
     test.strictEqual(typeof cssbeautifyCli.filename, 'undefined', 'bad filename');
     test.strictEqual(typeof cssbeautifyCli.stdin, 'undefined', 'bad stdin option');
+    test.strictEqual(typeof cssbeautifyCli.writefile, 'undefined', 'bad writefile');
 
     test.strictEqual(typeof cssbeautifyCli.exit, 'object', 'bad exit object');
     test.strictEqual(cssbeautifyCli.exit.code, 1, 'bad exit code');
