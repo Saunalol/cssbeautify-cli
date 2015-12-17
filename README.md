@@ -9,7 +9,7 @@ CLI for [cssbeautify](https://github.com/senchalabs/cssbeautify)
 
 ## Usage ##
 
-    cssbeautify-bin [options] -f filename
+    cssbeautify-cli [options] -f filename
 
 Options:
 ```
