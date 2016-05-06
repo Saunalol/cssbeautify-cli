@@ -1,7 +1,7 @@
 {
   "name": "cssbeautify-cli",
   "description": "CLI for cssbeautify",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "author": {
     "name": "Igor Shevchenko",
     "email": "cyberskunk@yandex.ru"
@@ -35,6 +35,7 @@
   "dependencies": {
     "concat-stream": "^1.4.6",
     "cssbeautify": "~0.3.0",
+    "glob": "^7.0.3",
     "optimist": "~0.6.0"
   },
   "devDependencies": {

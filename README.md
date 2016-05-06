@@ -28,19 +28,26 @@ __Examples__
 ```
 cssbeautify-cli -i2 -o "separate-line" -f ololo.css
 cssbeautify-cli --indent="   " -f nyan.css
+cssbeautify-cli -f "src/**/*.css" -w dst/style.css
 ```
 
 __Notes__
-- Options from config override command line options
+- options from config override command line options
 - `optimist` introduces strange behaviour in some cases, e.g.
 it's impossible to pass empty `indent` option in the following form: `-i ''`,
 but these solutions work just fine: `-i0`, `--indent ''`, `--indent=''`, `--indent=0`
 - The behaviour of boolean `-a` option is quite strange sometimes, check `test/autosemicolon.js` for
 details
 - file option is used if both file and stdin options are passed
+- glob patterns should be quoted to avoid shell pattern matching
+- output from multiple files is written into a single destination (file or STDOUT) using
+  `/*** FILENAME ***/` as separator
 
 
 ## Versions
+**0.5.2**
+ * `-f` option now supports [glob](https://www.npmjs.com/package/glob)
+
 **0.5.0**
  * `-w` (`--writefile`) option added
 
