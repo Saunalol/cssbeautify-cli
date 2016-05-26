@@ -10,12 +10,13 @@ CLI for [cssbeautify](https://github.com/senchalabs/cssbeautify)
 ## Usage ##
 
     cssbeautify-cli [options] -f filename
+    cssbeautify-cli [options] -f glob/**/*.pattern
 
 Options:
 ```
 -a, --autosemicolon  insert a semicolon after the last ruleset                                              [default: false]
 -c, --config         json config file to use
--f, --file           file to beautify
+-f, --file           file to beautify or glob pattern
 -h, --help           show this help message
 -i, --indent         string used for the indentation of the declaration (spaces, tabs or number of spaces)  [default: "    "]
 -o, --openbrace      the placement of open curly brace, either end-of-line or separate-line                 [default: "end-of-line"]
