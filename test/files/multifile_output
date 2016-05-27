@@ -1,0 +1,12 @@
+/**** test/files/green.css ***/
+body {
+    background-color: green;
+}
+/**** test/files/moar/blue.css ***/
+body {
+    background-color: blue;
+}
+/**** test/files/red.css ***/
+body {
+    background-color: red;
+}

@@ -24,43 +24,15 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 /*jslint node:true */
 
-var fs = require('fs'),
-    cssbeautify = require('cssbeautify'),
-    concat = require('concat-stream'),
-    stream = require('stream'),
-    glob = require('glob'),
-    bufferStream = new stream.Transform(),
-    cssbeautifyCli = require('../lib/cssbeautify-cli')()
+var cssbeautifyCli = require('../lib/cssbeautify-cli')()
         .parse()
-        .process(),
-    filename = cssbeautifyCli.filename,
-    options = cssbeautifyCli.options,
-    outFile = cssbeautifyCli.writefile,
-    outputFn = function (data) {
-        bufferStream.push(cssbeautify(data.toString(), options));
-        return bufferStream.pipe(outFile ? fs.createWriteStream(outFile) : process.stdout);
-    };
+        .process();
 
 cssbeautifyCli.callback();
 
 try {
-    if (filename) {
-        var outStream = outFile ? fs.createWriteStream(outFile) : process.stdout;
-        glob(filename, function(err, filenames) {
-            filenames.forEach(function(_filename) {
-                fs.createReadStream(_filename).pipe(concat(function (data) {
-                    return bufferStream.push('/**** ' + _filename + ' ***/\n'
-                        + cssbeautify(data.toString(), options));
-                }));
-            });
-        });
-            bufferStream.pipe(outStream);
-    } else {
-        (process.stdin).pipe(concat(ouputFn));
-    }
-
+    cssbeautifyCli.processFiles();
 } catch (e) {
     console.log('Error: ' + e.message);
     process.exit(1);
 }
-
