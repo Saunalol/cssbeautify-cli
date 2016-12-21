@@ -46,6 +46,9 @@ details
 
 
 ## Versions
+**0.5.3**
+ * fix #7 Writing to stdout broken when reading from stdin
+
 **0.5.2**
  * `-f` option now supports [glob](https://www.npmjs.com/package/glob)
 

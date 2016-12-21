@@ -1,7 +1,7 @@
 {
   "name": "cssbeautify-cli",
   "description": "CLI for cssbeautify",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "author": {
     "name": "Igor Shevchenko",
     "email": "cyberskunk@yandex.ru"
