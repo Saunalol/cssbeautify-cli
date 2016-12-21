@@ -56,7 +56,7 @@ try {
         });
             bufferStream.pipe(outStream);
     } else {
-        (process.stdin).pipe(concat(ouputFn));
+        (process.stdin).pipe(concat(outputFn));
     }
 
 } catch (e) {
