@@ -21,7 +21,8 @@
   ],
   "bin": "bin/cssbeautify-cli",
   "scripts": {
-    "test": "nodeunit test/"
+    "test": "nodeunit test/",
+    "lint": "eslint ."
   },
   "engines": {
     "node": ">=0.10.0"

@@ -22,7 +22,7 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-/*jslint node:true */
+/*eslint no-console:0 */
 
 var fs = require('fs'),
     cssbeautify = require('cssbeautify'),
@@ -54,7 +54,7 @@ try {
                 }));
             });
         });
-            bufferStream.pipe(outStream);
+        bufferStream.pipe(outStream);
     } else {
         (process.stdin).pipe(concat(outputFn));
     }

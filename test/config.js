@@ -5,7 +5,7 @@ var CssbeautifyCli = require('../lib/cssbeautify-cli'),
     config = {
         indent: '123',
         autosemicolon: true,
-        openbrace: "end-of-line"
+        openbrace: 'end-of-line'
     },
     fs = require('fs'),
     configFileName = './' + (new Date()).getTime() + '.json';

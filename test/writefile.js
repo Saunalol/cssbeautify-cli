@@ -10,7 +10,7 @@ var cssbeautifyCli = require('../lib/cssbeautify-cli')(),
 exports.w = function (test) {
     process.argv = ['node', fakeCommand, '-s', '-w', filename];
 
-    options = cssbeautifyCli.parse().process().options;
+    var options = cssbeautifyCli.parse().process().options;
 
     (Object.keys(defaults)).forEach(function (option) {
         test.strictEqual(options[option], defaults[option], 'bad option ' + option);
@@ -25,7 +25,7 @@ exports.w = function (test) {
 exports.writefile = function (test) {
     process.argv = ['node', fakeCommand, '-s', '--writefile=' + filename];
 
-    options = cssbeautifyCli.parse().process().options;
+    var options = cssbeautifyCli.parse().process().options;
 
     (Object.keys(defaults)).forEach(function (option) {
         test.strictEqual(options[option], defaults[option], 'bad option ' + option);

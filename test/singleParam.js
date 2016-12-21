@@ -5,7 +5,7 @@ var CssbeautifyCli = require('../lib/cssbeautify-cli'),
 exports.help = function (test) {
     process.argv = ['node', fakeCommand, '-h'];
 
-    cssbeautifyCli = CssbeautifyCli()
+    var cssbeautifyCli = CssbeautifyCli()
         .parse()
         .process();
     options = cssbeautifyCli.options;
@@ -23,7 +23,7 @@ exports.help = function (test) {
 exports.version = function (test) {
     process.argv = ['node', fakeCommand, '-v'];
 
-    cssbeautifyCli = CssbeautifyCli()
+    var cssbeautifyCli = CssbeautifyCli()
         .parse()
         .process();
 

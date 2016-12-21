@@ -15,7 +15,7 @@ exports.autosemicolon_true = function (test) {
         ['node', fakeCommand, '-f', filename, '-a', '0'],
         ['node', fakeCommand, '-f', filename, '-a', 'xxx'],
         ['node', fakeCommand, '-f', filename, '--autosemicolon', '0'],
-        ['node', fakeCommand, '-f', filename, '--autosemicolon', 'xxx'],
+        ['node', fakeCommand, '-f', filename, '--autosemicolon', 'xxx']
 
     ]).forEach(function (argv) {
         process.argv = argv;

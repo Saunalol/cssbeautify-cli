@@ -10,7 +10,7 @@ var cssbeautifyCli = require('../lib/cssbeautify-cli')(),
 exports.singleParam_f = function (test) {
     process.argv = ['node', fakeCommand, '-f', filename];
 
-    options = cssbeautifyCli.parse().process().options;
+    var options = cssbeautifyCli.parse().process().options;
 
     (Object.keys(defaults)).forEach(function (option) {
         test.strictEqual(options[option], defaults[option], 'bad option ' + option);
@@ -24,7 +24,7 @@ exports.singleParam_f = function (test) {
 exports.singleParam_file = function (test) {
     process.argv = ['node', fakeCommand, '--file=' + filename];
 
-    options = cssbeautifyCli.parse().process().options;
+    var options = cssbeautifyCli.parse().process().options;
 
     (Object.keys(defaults)).forEach(function (option) {
         test.strictEqual(options[option], defaults[option], 'bad option ' + option);
@@ -38,7 +38,7 @@ exports.singleParam_file = function (test) {
 exports.overridesStdin_f = function (test) {
     process.argv = ['node', fakeCommand, '-f', filename, '--stdin'];
 
-    options = cssbeautifyCli.parse().process().options;
+    var options = cssbeautifyCli.parse().process().options;
 
     (Object.keys(defaults)).forEach(function (option) {
         test.strictEqual(options[option], defaults[option], 'bad option ' + option);
@@ -53,7 +53,7 @@ exports.overridesStdin_f = function (test) {
 exports.overridesStdin_file = function (test) {
     process.argv = ['node', fakeCommand, '--file=' + filename, '-s'];
 
-    options = cssbeautifyCli.parse().process().options;
+    var options = cssbeautifyCli.parse().process().options;
 
     (Object.keys(defaults)).forEach(function (option) {
         test.strictEqual(options[option], defaults[option], 'bad option ' + option);
