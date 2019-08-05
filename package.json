@@ -21,7 +21,7 @@
   ],
   "bin": "bin/cssbeautify-cli",
   "scripts": {
-    "test": "nodeunit test/",
+    "test": "ava test/*.js",
     "lint": "eslint ."
   },
   "engines": {
@@ -40,6 +40,6 @@
     "optimist": "0.6.1"
   },
   "devDependencies": {
-    "nodeunit": "^0.11.3"
+    "ava": "^2.2.0"
   }
 }

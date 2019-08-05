@@ -1,9 +1,10 @@
+const test = require('ava');
 var CssbeautifyCli = require('../lib/cssbeautify-cli'),
     cssbeautifyCli,
     fakeCommand = './bin/cssbeautify',
     filename = 'test.css';
 
-exports.autosemicolon_true = function (test) {
+test('autosemicolon_true', function (test) {
     ([
         ['node', fakeCommand, '-f', filename, '-a', 'true'],
         ['node', fakeCommand, '-f', filename, '-a', '1'],
@@ -24,15 +25,13 @@ exports.autosemicolon_true = function (test) {
             .parse()
             .process();
 
-        test.strictEqual(cssbeautifyCli.options.autosemicolon, true);
-        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
+        test.is(cssbeautifyCli.options.autosemicolon, true);
+        test.is(typeof cssbeautifyCli.exit, 'undefined');
     });
 
+});
 
-    test.done();
-};
-
-exports.autosemicolon_false = function (test) {
+test('autosemicolon_false', function (test) {
     ([
         ['node', fakeCommand, '-f', filename, '-a', 'false'],
         ['node', fakeCommand, '-f', filename, '--autosemicolon', 'false'],
@@ -45,15 +44,13 @@ exports.autosemicolon_false = function (test) {
             .parse()
             .process();
 
-        test.strictEqual(cssbeautifyCli.options.autosemicolon, false);
-        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
+        test.is(cssbeautifyCli.options.autosemicolon, false);
+        test.is(typeof cssbeautifyCli.exit, 'undefined');
     });
 
+});
 
-    test.done();
-};
-
-exports.a_wrong = function (test) {
+test('a_wrong',  function (test) {
     process.argv = ['node', fakeCommand, '-f', filename, '-a', 'xxx'];
 
     ([
@@ -66,15 +63,13 @@ exports.a_wrong = function (test) {
             .parse()
             .process();
 
-        test.strictEqual(cssbeautifyCli.options, null);
-        test.strictEqual(cssbeautifyCli.exit.code, 1);
-        test.strictEqual(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.autosemicolon);
+        test.is(cssbeautifyCli.options, null);
+        test.is(cssbeautifyCli.exit.code, 1);
+        test.is(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.autosemicolon);
     });
+});
 
-    test.done();
-};
-
-exports.autosemicolon_wrong = function (test) {
+test('autosemicolon_wrong', function (test) {
     process.argv = ['node', fakeCommand, '-f', filename, '--autosemicolon', 'xxx'];
 
     ([
@@ -87,15 +82,13 @@ exports.autosemicolon_wrong = function (test) {
             .parse()
             .process();
 
-        test.strictEqual(cssbeautifyCli.options, null);
-        test.strictEqual(cssbeautifyCli.exit.code, 1);
-        test.strictEqual(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.autosemicolon);
+        test.is(cssbeautifyCli.options, null);
+        test.is(cssbeautifyCli.exit.code, 1);
+        test.is(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.autosemicolon);
     });
+});
 
-    test.done();
-};
-
-exports['autosemicolon=_wrong'] = function (test) {
+test('autosemicolon=_wrong', function (test) {
     process.argv = ['node', fakeCommand, '-f', filename, '--autosemicolon=xxx'];
 
     ([
@@ -108,11 +101,9 @@ exports['autosemicolon=_wrong'] = function (test) {
             .parse()
             .process();
 
-        test.strictEqual(cssbeautifyCli.options, null);
-        test.strictEqual(cssbeautifyCli.exit.code, 1);
-        test.strictEqual(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.autosemicolon);
+        test.is(cssbeautifyCli.options, null);
+        test.is(cssbeautifyCli.exit.code, 1);
+        test.is(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.autosemicolon);
     });
-
-    test.done();
-};
+});
 

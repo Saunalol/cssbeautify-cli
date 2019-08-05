@@ -1,3 +1,4 @@
+const test = require('ava');
 var CssbeautifyCli = require('../lib/cssbeautify-cli'),
     cssbeautifyCli,
     fakeCommand = './bin/cssbeautify',
@@ -19,84 +20,72 @@ var CssbeautifyCli = require('../lib/cssbeautify-cli'),
     indentSpaces = [' ', '  ', '     '],
     wrongIndent = 'xxx';
 
-exports.i_spaces = function (test) {
+test('i_spaces', function (test) {
     indentSpaces.forEach(function (indent) {
         process.argv = ['node', fakeCommand, '-f', filename, '-i', indent];
 
         cssbeautifyCli = CssbeautifyCli().parse().process();
 
-        test.strictEqual(cssbeautifyCli.options.indent, indent);
-        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
+        test.is(cssbeautifyCli.options.indent, indent);
+        test.is(typeof cssbeautifyCli.exit, 'undefined');
     });
+});
 
-    test.done();
-};
-
-exports.indent_spaces = function (test) {
+test('indent_spaces', function (test) {
     indentSpaces.concat('').forEach(function (indent) {
         process.argv = ['node', fakeCommand, '-f', filename, '--indent', indent];
 
         cssbeautifyCli = CssbeautifyCli().parse().process();
 
-        test.strictEqual(cssbeautifyCli.options.indent, indent);
-        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
+        test.is(cssbeautifyCli.options.indent, indent);
+        test.is(typeof cssbeautifyCli.exit, 'undefined');
     });
+});
 
-    test.done();
-};
-
-exports['indent=_spaces'] = function (test) {
+test('indent=_spaces', function (test) {
     indentSpaces.concat('').forEach(function (indent) {
         process.argv = ['node', fakeCommand, '-f', filename, '--indent='+indent];
 
         cssbeautifyCli = CssbeautifyCli().parse().process();
-        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
-        test.strictEqual(cssbeautifyCli.options.indent, indent);
+        test.is(typeof cssbeautifyCli.exit, 'undefined');
+        test.is(cssbeautifyCli.options.indent, indent);
     });
+});
 
-    test.done();
-};
-
-exports.i_numbers = function (test) {
+test('i_numbers', function (test) {
     indentNumbers.forEach(function (indent) {
         process.argv = ['node', fakeCommand, '-f', filename, '-i', indent.value];
 
         cssbeautifyCli = CssbeautifyCli().parse().process();
 
-        test.strictEqual(cssbeautifyCli.options.indent, indent.expected);
-        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
+        test.is(cssbeautifyCli.options.indent, indent.expected);
+        test.is(typeof cssbeautifyCli.exit, 'undefined');
     });
+});
 
-    test.done();
-};
-
-exports.i_numbers2 = function (test) {
+test('i_numbers2', function (test) {
     indentNumbers.forEach(function (indent) {
         process.argv = ['node', fakeCommand, '-f', filename, '-i'+indent.value];
 
         cssbeautifyCli = CssbeautifyCli().parse().process();
 
-        test.strictEqual(cssbeautifyCli.options.indent, indent.expected);
-        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
+        test.is(cssbeautifyCli.options.indent, indent.expected);
+        test.is(typeof cssbeautifyCli.exit, 'undefined');
     });
+});
 
-    test.done();
-};
-
-exports.indent_numbers = function (test) {
+test('indent_numbers', function (test) {
     indentNumbers.forEach(function (indent) {
         process.argv = ['node', fakeCommand, '-f', filename, '--indent', indent.value];
 
         cssbeautifyCli = CssbeautifyCli().parse().process();
 
-        test.strictEqual(cssbeautifyCli.options.indent, indent.expected);
-        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
+        test.is(cssbeautifyCli.options.indent, indent.expected);
+        test.is(typeof cssbeautifyCli.exit, 'undefined');
     });
+});
 
-    test.done();
-};
-
-exports['indent=_numbers'] = function (test) {
+test('indent=_numbers', function (test) {
     indentNumbers.forEach(function (indent) {
         process.argv = ['node', fakeCommand, '-f', filename, '--indent=' + indent.value];
 
@@ -104,51 +93,43 @@ exports['indent=_numbers'] = function (test) {
             .parse()
             .process();
 
-        test.strictEqual(cssbeautifyCli.options.indent, indent.expected);
-        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
+        test.is(cssbeautifyCli.options.indent, indent.expected);
+        test.is(typeof cssbeautifyCli.exit, 'undefined');
     });
+});
 
-    test.done();
-};
-
-exports.i_wrong = function (test) {
+test('i_wrong', function (test) {
     process.argv = ['node', fakeCommand, '-f', filename, '-i', wrongIndent];
 
     var cssbeautifyCli = CssbeautifyCli()
         .parse()
         .process();
 
-    test.strictEqual(cssbeautifyCli.options, null);
-    test.strictEqual(cssbeautifyCli.exit.code, 1);
-    test.strictEqual(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.indent);
+    test.is(cssbeautifyCli.options, null);
+    test.is(cssbeautifyCli.exit.code, 1);
+    test.is(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.indent);
+});
 
-    test.done();
-};
-
-exports.indent_wrong = function (test) {
+test('indent_wrong', function (test) {
     process.argv = ['node', fakeCommand, '-f', filename, '--indent', wrongIndent];
 
     var cssbeautifyCli = CssbeautifyCli()
         .parse()
         .process();
 
-    test.strictEqual(cssbeautifyCli.options, null);
-    test.strictEqual(cssbeautifyCli.exit.code, 1);
-    test.strictEqual(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.indent);
+    test.is(cssbeautifyCli.options, null);
+    test.is(cssbeautifyCli.exit.code, 1);
+    test.is(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.indent);
+});
 
-    test.done();
-};
-
-exports['indent=_wrong'] = function (test) {
+test('indent=_wrong', function (test) {
     process.argv = ['node', fakeCommand, '-f', filename, '--indent', wrongIndent];
 
     var cssbeautifyCli = CssbeautifyCli()
         .parse()
         .process();
 
-    test.strictEqual(cssbeautifyCli.options, null);
-    test.strictEqual(cssbeautifyCli.exit.code, 1);
-    test.strictEqual(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.indent);
-
-    test.done();
-};
+    test.is(cssbeautifyCli.options, null);
+    test.is(cssbeautifyCli.exit.code, 1);
+    test.is(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.indent);
+});

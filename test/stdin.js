@@ -1,3 +1,4 @@
+const test = require('ava');
 var cssbeautifyCli = require('../lib/cssbeautify-cli')(),
     defaults = {
         indent: '    ', // 4 spaces
@@ -6,35 +7,31 @@ var cssbeautifyCli = require('../lib/cssbeautify-cli')(),
     },
     fakeCommand = './bin/cssbeautify';
 
-exports.shortForm = function (test) {
+test('shortForm', function (test) {
     process.argv = ['node', fakeCommand, '-s'];
 
     var options = cssbeautifyCli.parse().process().options;
 
     (Object.keys(defaults)).forEach(function (option) {
-        test.strictEqual(options[option], defaults[option], 'bad option ' + option);
+        test.is(options[option], defaults[option], 'bad option ' + option);
     });
 
-    test.strictEqual(typeof cssbeautifyCli.filename, 'undefined', 'bad filename');
-    test.strictEqual(typeof cssbeautifyCli.exit, 'undefined', 'bad exit object');
-    test.strictEqual(cssbeautifyCli.stdin, true, 'bad stdin parameter: ' + cssbeautifyCli.stdin);
+    test.is(typeof cssbeautifyCli.filename, 'undefined', 'bad filename');
+    test.is(typeof cssbeautifyCli.exit, 'undefined', 'bad exit object');
+    test.is(cssbeautifyCli.stdin, true, 'bad stdin parameter: ' + cssbeautifyCli.stdin);
+});
 
-    test.done();
-};
-
-exports.longForm = function (test) {
+test('longForm', function (test) {
     process.argv = ['node', fakeCommand, '--stdin'];
 
     var options = cssbeautifyCli.parse().process().options;
 
     (Object.keys(defaults)).forEach(function (option) {
-        test.strictEqual(options[option], defaults[option], 'bad option ' + option);
+        test.is(options[option], defaults[option], 'bad option ' + option);
     });
 
-    test.strictEqual(typeof cssbeautifyCli.filename, 'undefined', 'bad filename');
-    test.strictEqual(typeof cssbeautifyCli.exit, 'undefined', 'bad exit object');
+    test.is(typeof cssbeautifyCli.filename, 'undefined', 'bad filename');
+    test.is(typeof cssbeautifyCli.exit, 'undefined', 'bad exit object');
 
-    test.strictEqual(cssbeautifyCli.stdin, true, 'bad stdin parameter: ' + cssbeautifyCli.stdin);
-
-    test.done();
-};
+    test.is(cssbeautifyCli.stdin, true, 'bad stdin parameter: ' + cssbeautifyCli.stdin);
+});

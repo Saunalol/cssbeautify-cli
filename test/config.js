@@ -1,73 +1,69 @@
-var CssbeautifyCli = require('../lib/cssbeautify-cli'),
-    fakeCommand = './bin/cssbeautify',
-    filename = 'test.css',
-    cssbeautifyCli,
-    config = {
-        indent: '123',
-        autosemicolon: true,
-        openbrace: 'end-of-line'
-    },
-    fs = require('fs'),
-    configFileName = './' + (new Date()).getTime() + '.json';
+const test = require('ava');
+const fs = require('fs');
 
-exports.missingValue = function (test) {
+const CssbeautifyCli = require('../lib/cssbeautify-cli');
+const fakeCommand = './bin/cssbeautify';
+const filename = 'test.css';
+const config = {
+    indent: '123',
+    autosemicolon: true,
+    openbrace: 'end-of-line'
+};
+const configFileName = './' + (new Date()).getTime() + '.json';
+
+test('missingValue', function (test) {
     ['-c', '-c=', '--config', '--config='].forEach(function (param) {
 
         process.argv = ['node', fakeCommand, '-f', filename, param];
 
-        cssbeautifyCli = CssbeautifyCli()
+        const cssbeautifyCli = CssbeautifyCli()
             .parse()
             .process();
 
-        test.strictEqual(typeof cssbeautifyCli.exit, 'object', 'bad exit object');
-        test.strictEqual(cssbeautifyCli.exit.code, 1, 'bad exit code');
+        test.is(typeof cssbeautifyCli.exit, 'object', 'bad exit object');
+        test.is(cssbeautifyCli.exit.code, 1, 'bad exit code');
 
     });
+});
 
-    test.done();
-};
-
-exports.missingFile = function (test) {
+test('missingFile', function (test) {
     fs.writeFileSync(configFileName, JSON.stringify(config));
 
     ['-c', '-c=', '--config', '--config='].forEach(function (param) {
         process.argv = ['node', fakeCommand, '-f', filename, param, 'someNonexistingFile'];
 
-        cssbeautifyCli = CssbeautifyCli()
+        const cssbeautifyCli = CssbeautifyCli()
             .parse()
             .process();
 
-        test.strictEqual(typeof cssbeautifyCli.exit, 'object', 'bad exit object');
-        test.strictEqual(cssbeautifyCli.exit.code, 1, 'bad exit code');
+        test.is(typeof cssbeautifyCli.exit, 'object', 'bad exit object');
+        test.is(cssbeautifyCli.exit.code, 1, 'bad exit code');
     });
 
     fs.unlinkSync(configFileName);
+});
 
-    test.done();
-};
-
-exports.correctlyRead = function (test) {
+test('correctlyRead', function (test) {
     fs.writeFileSync(configFileName, JSON.stringify(config));
 
     process.argv = ['node', fakeCommand, '-f', filename, '-c', configFileName];
 
-    cssbeautifyCli = CssbeautifyCli()
+    const cssbeautifyCli = CssbeautifyCli()
         .parse()
         .process();
 
-    test.strictEqual(typeof cssbeautifyCli.exit, 'undefined', 'bad exit object: ' + JSON.stringify(cssbeautifyCli.exit));
-    test.equal(cssbeautifyCli.options.indent.length, config.indent);
-    test.ok(/\ +/.test(cssbeautifyCli.options.indent));
-    test.equal(cssbeautifyCli.options.autosemicolon, config.autosemicolon);
-    test.equal(cssbeautifyCli.options.openbrace, config.openbrace);
+    test.is(typeof cssbeautifyCli.exit, 'undefined', 'bad exit object: ' + JSON.stringify(cssbeautifyCli.exit));
+    test.log(cssbeautifyCli.options.indent);
+    test.is(cssbeautifyCli.options.indent.length, Number(config.indent));
+    test.truthy(/\ +/.test(cssbeautifyCli.options.indent));
+    test.is(cssbeautifyCli.options.autosemicolon, config.autosemicolon);
+    test.is(cssbeautifyCli.options.openbrace, config.openbrace);
 
     fs.unlinkSync(configFileName);
+});
 
-    test.done();
-};
-
-exports.overridesCommandLine = function (test) {
-    var localConfig = {
+test('overridesCommandLine', function (test) {
+    const localConfig = {
         indent: 4,
         autosemicolon: 'false',
         openbrace: 'separate-line'
@@ -83,18 +79,16 @@ exports.overridesCommandLine = function (test) {
         '-o', localConfig.openbrace
     ];
 
-    cssbeautifyCli = CssbeautifyCli()
+    const cssbeautifyCli = CssbeautifyCli()
         .parse()
         .process();
 
-    test.strictEqual(typeof cssbeautifyCli.exit, 'undefined', 'bad exit object: ' + JSON.stringify(cssbeautifyCli.exit));
-    test.equal(cssbeautifyCli.options.indent.length, config.indent);
-    test.ok(/\ +/.test(cssbeautifyCli.options.indent));
-    test.equal(cssbeautifyCli.options.autosemicolon, config.autosemicolon);
-    test.equal(cssbeautifyCli.options.openbrace, config.openbrace);
+    test.is(cssbeautifyCli.exit, undefined, 'bad exit object: ' + JSON.stringify(cssbeautifyCli.exit));
+    test.is(cssbeautifyCli.options.indent.length, Number(config.indent));
+    test.true(/^ {123}$/.test(cssbeautifyCli.options.indent));
+    test.is(cssbeautifyCli.options.autosemicolon, config.autosemicolon);
+    test.is(cssbeautifyCli.options.openbrace, config.openbrace);
 
 
     fs.unlinkSync(configFileName);
-
-    test.done();
-};
+});

@@ -1,8 +1,9 @@
+const test = require('ava');
 var CssbeautifyCli = require('../lib/cssbeautify-cli'),
     fakeCommand = './bin/cssbeautify',
     options;
 
-exports.help = function (test) {
+test('help', function (test) {
     process.argv = ['node', fakeCommand, '-h'];
 
     var cssbeautifyCli = CssbeautifyCli()
@@ -10,17 +11,15 @@ exports.help = function (test) {
         .process();
     options = cssbeautifyCli.options;
 
-    test.strictEqual(typeof options, 'undefined', 'bad options ' + JSON.stringify(options));
+    test.is(typeof options, 'undefined', 'bad options ' + JSON.stringify(options));
 
-    test.strictEqual(typeof cssbeautifyCli.filename, 'undefined', 'bad filename');
+    test.is(typeof cssbeautifyCli.filename, 'undefined', 'bad filename');
 
-    test.strictEqual(typeof cssbeautifyCli.exit, 'object', 'bad exit');
-    test.strictEqual(cssbeautifyCli.exit.code, 0, 'bad exit code');
+    test.is(typeof cssbeautifyCli.exit, 'object', 'bad exit');
+    test.is(cssbeautifyCli.exit.code, 0, 'bad exit code');
+});
 
-    test.done();
-};
-
-exports.version = function (test) {
+test('version', function (test) {
     process.argv = ['node', fakeCommand, '-v'];
 
     var cssbeautifyCli = CssbeautifyCli()
@@ -29,12 +28,10 @@ exports.version = function (test) {
 
     options = cssbeautifyCli.options;
 
-    test.strictEqual(typeof options, 'undefined', 'bad options ' + JSON.stringify(options));
+    test.is(typeof options, 'undefined', 'bad options ' + JSON.stringify(options));
 
-    test.strictEqual(typeof cssbeautifyCli.filename, 'undefined', 'bad filename');
+    test.is(typeof cssbeautifyCli.filename, 'undefined', 'bad filename');
 
-    test.strictEqual(typeof cssbeautifyCli.exit, 'object', 'bad exit');
-    test.strictEqual(cssbeautifyCli.exit.code, 0, 'bad exit code');
-
-    test.done();
-};
+    test.is(typeof cssbeautifyCli.exit, 'object', 'bad exit');
+    test.is(cssbeautifyCli.exit.code, 0, 'bad exit code');
+});

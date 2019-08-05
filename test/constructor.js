@@ -1,16 +1,13 @@
+const test = require('ava');
 var CssbeautifyCli = require('../lib/cssbeautify-cli'),
     cssbeautifyCli;
 
-exports.withoutNew = function (test) {
+test('withoutNew', function (test) {
     cssbeautifyCli = CssbeautifyCli();
-    test.strictEqual(cssbeautifyCli instanceof CssbeautifyCli, true);
+    test.is(cssbeautifyCli instanceof CssbeautifyCli, true);
+});
 
-    test.done();
-};
-
-exports.withNew = function (test) {
+test('withNew', function (test) {
     cssbeautifyCli = new CssbeautifyCli();
-    test.strictEqual(cssbeautifyCli instanceof CssbeautifyCli, true);
-
-    test.done();
-};
+    test.is(cssbeautifyCli instanceof CssbeautifyCli, true);
+});
