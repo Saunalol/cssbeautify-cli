@@ -1,9 +1,10 @@
+const test = require('ava');
 var CssbeautifyCli = require('../lib/cssbeautify-cli'),
     cssbeautifyCli,
     fakeCommand = './bin/cssbeautify',
     filename = 'test.css';
 
-exports.o = function (test) {
+test('o', function (test) {
     var openbrace = ['end-of-line', 'separate-line'];
 
     openbrace.forEach(function (openbrace) {
@@ -13,14 +14,12 @@ exports.o = function (test) {
             .parse()
             .process();
 
-        test.strictEqual(cssbeautifyCli.options.openbrace, openbrace);
-        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
+        test.is(cssbeautifyCli.options.openbrace, openbrace);
+        test.is(typeof cssbeautifyCli.exit, 'undefined');
     });
+});
 
-    test.done();
-};
-
-exports.openbrace = function (test) {
+test('openbrace', function (test) {
     var openbrace = ['end-of-line', 'separate-line'];
 
     openbrace.forEach(function (openbrace) {
@@ -30,14 +29,12 @@ exports.openbrace = function (test) {
             .parse()
             .process();
 
-        test.strictEqual(cssbeautifyCli.options.openbrace, openbrace);
-        test.strictEqual(typeof cssbeautifyCli.exit, 'undefined');
+        test.is(cssbeautifyCli.options.openbrace, openbrace);
+        test.is(typeof cssbeautifyCli.exit, 'undefined');
     });
+});
 
-    test.done();
-};
-
-exports.o_wrong = function (test) {
+test('o_wrong', function (test) {
     var openbrace = 'end-of-line-xxx';
 
     process.argv = ['node', fakeCommand, '-f', filename, '-o', openbrace];
@@ -46,14 +43,12 @@ exports.o_wrong = function (test) {
         .parse()
         .process();
 
-    test.strictEqual(cssbeautifyCli.options, null);
-    test.strictEqual(cssbeautifyCli.exit.code, 1);
-    test.strictEqual(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.openbrace);
+    test.is(cssbeautifyCli.options, null);
+    test.is(cssbeautifyCli.exit.code, 1);
+    test.is(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.openbrace);
+});
 
-    test.done();
-};
-
-exports.openbrace_wrong = function (test) {
+test('openbrace_wrong', function (test) {
     var openbrace = 'end-of-line-xxx';
 
     process.argv = ['node', fakeCommand, '-f', filename, '--openbrace', openbrace];
@@ -62,14 +57,12 @@ exports.openbrace_wrong = function (test) {
         .parse()
         .process();
 
-    test.strictEqual(cssbeautifyCli.options, null);
-    test.strictEqual(cssbeautifyCli.exit.code, 1);
-    test.strictEqual(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.openbrace);
+    test.is(cssbeautifyCli.options, null);
+    test.is(cssbeautifyCli.exit.code, 1);
+    test.is(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.openbrace);
+});
 
-    test.done();
-};
-
-exports['openbrace=_wrong'] = function (test) {
+test('openbrace=_wrong', function (test) {
     var openbrace = 'end-of-line-xxx';
 
     process.argv = ['node', fakeCommand, '-f', filename, '--openbrace='+openbrace];
@@ -78,9 +71,7 @@ exports['openbrace=_wrong'] = function (test) {
         .parse()
         .process();
 
-    test.strictEqual(cssbeautifyCli.options, null);
-    test.strictEqual(cssbeautifyCli.exit.code, 1);
-    test.strictEqual(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.openbrace);
-
-    test.done();
-};
+    test.is(cssbeautifyCli.options, null);
+    test.is(cssbeautifyCli.exit.code, 1);
+    test.is(cssbeautifyCli.exit.fn, CssbeautifyCli.ERRORS.openbrace);
+});
