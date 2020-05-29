@@ -21,7 +21,6 @@
   ],
   "bin": "bin/cssbeautify-cli",
   "scripts": {
-    "preinstall": "npx npm-force-resolutions",
     "test": "ava test/*.js",
     "lint": "eslint ."
   },
@@ -42,8 +41,5 @@
   },
   "devDependencies": {
     "ava": "^2.2.0"
-  },
-  "resolutions": {
-    "minimist": "1.2.5"
   }
 }
